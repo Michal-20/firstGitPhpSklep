@@ -79,6 +79,38 @@
             return [];
         }
 
+        static function checkUser($log){
+            require_once 'dbConfig.php';
+            $conn = new mysqli($host,$db_user,$db_password,$db_name);
+            if($conn->connect_errno == 0 ){
+                $search = "SELECT * FROM users WHERE login='$log'";
+                $result = $conn->query($search);
+                if($result->num_rows > 0){
+                    return false;
+                }
+                return true;
+            }else{
+                echo "Nie udalo sie polaczyc z baza";
+            }
+            $conn->close();
+        }
+
+        static function addUser($login,$haslo,$imie,$nazwisko){
+            $host = "localhost";
+             $db_user = "root";
+              $db_password = "";
+              $db_name = "sklep";
+            $conn = new mysqli($host,$db_user,$db_password,$db_name);
+            if($conn->connect_errno == 0 ){
+                $add = "INSERT INTO users (login,password,name, lname ) VALUES ('$login','$haslo','$imie','$nazwisko')";
+                $conn->query($add);
+            }else{
+                echo "Nie udalo sie polaczyc z baza";
+            }
+            return [];
+            $conn->close();
+        }
+
         static function removeUser($id) {
             require_once 'dbConfig.php';
             $conn = new mysqli($host, $db_user, $db_password, $db_name);

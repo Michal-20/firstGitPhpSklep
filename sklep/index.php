@@ -51,7 +51,7 @@
         <input class="<?=$input_class?>" type="" name="password" value="<?=$password?>" required><br/><br/>
         <input type="submit" value="<?= CMS::getContent("login") ?>">
     </form>
-    <button onclick="location.href='../pages/register.php'"><?= CMS::getContent("register") ?></button>
+    <button onclick="location.href='./pages/register.php'"><?= CMS::getContent("register") ?></button>
 
 </body>
 </html>
